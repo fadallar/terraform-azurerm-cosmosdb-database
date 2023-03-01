@@ -19,7 +19,9 @@ variable "throughput" {
   type        = number
   default     = null
   validation {
-    condition = try(can(var.throughput / 100) && var.throughput >= 400 && var.throughput <= 1000000, true)
+    condition     = try(can(var.throughput / 100) && var.throughput >= 400 && var.throughput <= 1000000, true)
+    error_message = "Invalid variable: ${var.throughput}"
+
   }
 }
 
@@ -28,7 +30,9 @@ variable "max_autoscaling_throughput" {
   type        = number
   default     = null
   validation {
-    condition = try(can(var.throughput / 1000) && var.throughput >= 1000 && var.throughput <= 1000000, true)
+    condition     = try(can(var.max_autoscaling_throughput / 1000) && var.max_autoscaling_throughput >= 1000 && var.max_autoscaling_throughput <= 1000000, true)
+    error_message = "Invalid variable: ${var.max_autoscaling_throughput}"
+
   }
 
 }
